@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.mapper.MemberMapper">
+
+	<select id="isIdDupCheck" resultType="int">
+		SELECT COUNT(*) FROM admin.member WHERE id = #{id}
+	</select>
+
+	<insert id="insertMember" parameterType="MemberVO">
+		INSERT INTO admin.member (id, passwd, name, phone, email, reg_date)
+		VALUES (#{id}, #{passwd}, #{name}, #{phone}, #{email}, current_timestamp)
+	</insert>
+	
+	<select id="getMember" resultType="MemberVO">
+		SELECT * FROM admin.member WHERE id = #{id}
+	</select>
+	
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE admin.member SET name = #{name}, phone = #{phone}, email = #{email} WHERE id = #{id} 
+	</update>
+	
+	<delete id="deleteMember">
+		DELETE FROM admin.member WHERE id = #{id}
+	</delete>
+	
+	<select id="getMembers" resultType="MemberVO">
+		SELECT *
+		FROM admin.member
+		WHERE not id = 'admin'
+			<if test="search != null and search != ''">
+				and id LIKE CONCAT('%', #{search}, '%')
+			</if>
+		ORDER BY reg_date
+		LIMIT #{pageSize} OFFSET #{startRow}
+	</select>
+	
+	<select id="memberCount" resultType="int">
+		SELECT count(*) FROM admin.member WHERE NOT id = 'admin'
+			<if test="search != null and search != ''">
+				and id LIKE CONCAT('%', #{search}, '%')
+			</if>
+	</select>
+	
+	
+</mapper>
