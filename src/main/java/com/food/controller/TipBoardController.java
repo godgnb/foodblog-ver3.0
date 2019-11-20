@@ -307,14 +307,14 @@ public class TipBoardController {
 
 
 	@PostMapping("/update")
-	public ResponseEntity<String> update(MultipartFile file, TipBoardVO tipBoardVO, HttpServletRequest request, String pageNum) throws Exception {
+	public ResponseEntity<String> update(MultipartFile file, TipBoardVO tipBoardVO, HttpServletRequest request, String pageNum,
+			@RequestParam(value = "delFile", defaultValue = "", required = false) String delFile) throws Exception {
 		//=============== 게시글 수정 처리 시작 =================
 		// 게시글 수정하는 메소드 호출
 		tipBoardService.updateBoard(tipBoardVO);
 
-		if(request.getParameter("delFile") !=  null) {
-			String delFile = (String) request.getParameter("delFile");
 		//=============== 첨부파일 수정 처리 시작 =================
+		if(!delFile.equals("")) {
 			// 업로드할 경로
 			ServletContext application = request.getServletContext();
 			String realPath = application.getRealPath("/resources/upload");

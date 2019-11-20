@@ -18,7 +18,6 @@
     <link rel="icon" href="${pageContext.request.contextPath}/resources/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <script href="${pageContext.request.contextPath}/resources/css/style.css"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     
 <style>
