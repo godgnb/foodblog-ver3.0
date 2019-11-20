@@ -205,6 +205,7 @@ public class TipBoardController {
 
 
 		// request 영역객체에 저장
+		model.addAttribute("num", num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("tipBoard", tipBoardVO);
 		model.addAttribute("attach", tipBoardAttachVO);
@@ -372,63 +373,5 @@ public class TipBoardController {
 
 		return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
 	} // update post
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 } // TipBoardController class

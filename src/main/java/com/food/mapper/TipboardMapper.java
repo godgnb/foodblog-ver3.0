@@ -8,7 +8,7 @@ import com.food.domain.TipBoardCommentVO;
 import com.food.domain.TipBoardVO;
 
 public interface TipboardMapper {
-
+	
 	// insert할 레코드의 번호 생성 메소드
 	public int NextTipNum();
 	
@@ -67,6 +67,5 @@ public interface TipboardMapper {
 	
 	// 특정 게시글 댓글 개수 가져오기 메소드
 	public int getCommentCount(int num);
-
 	
 } // TipboardMapper interface
