@@ -146,26 +146,26 @@
     <div class="catagory-post-area section-padding-100">
         <div class="container">
         	<div class="title" style="margin-bottom: 40px; border-bottom: 1px solid #b1a8a8;">
-        		<h2>${ pageInfo.count }개의 행복한 팁이 있습니다</h2>
+        		<h2>${pageInfo.count}개의 행복한 팁이 있습니다</h2>
         	</div>
         	<div class="row justify-content-center">
                 <!-- Post Area -->
                 <div class="col-12 col-lg-8 col-xl-9">
 		        	<c:choose>
-		        		<c:when test="${ pageInfo.count gt 0 }">
-		        			<c:forEach var="boardlist" items="${ tipboardList }">
+		        		<c:when test="${pageInfo.count gt 0}">
+		        			<c:forEach var="boardlist" items="${tipboardList}">
 		        				<!-- Single Blog Post -->
 			                    <div class="media">
 			        			<!-- Media Area -->
 				                 	<div class="media-left">
-				                 	<a href="/tipboard/contentForm?num=${ boardlist.num }&pageNum=${ pageNum }">
+				                 	<a href="/tipboard/contentForm?num=${boardlist.num}&pageNum=${pageNum}">
 										<img src="" alt="" style="width: 200px;height: 130px;">
 									</a>
 									</div>
 				                  	<div class="media-body">
-				                  		<h4 class="media-heading" id="media-heading"><a href="/tipboard/contentForm?num=${ boardlist.num }&pageNum=${ pageNum }">${ boardlist.subject }</a></h4>
-						                <p class="info_writer">${ boardlist.id }<span>|</span><fmt:formatDate value="${ boardlist.regDate }" pattern="yyyy-MM-dd HH:mm"/><span>|</span>
-						                <span class="cate_view">${ boardlist.readcount }</span><span>|</span><span class="cate_comment">${ boardlist.commcount }</span></p>
+				                  		<h4 class="media-heading" id="media-heading"><a href="/tipboard/contentForm?num=${boardlist.num}&pageNum=${pageNum}">${ boardlist.subject }</a></h4>
+						                <p class="info_writer">${boardlist.id}<span>|</span><fmt:formatDate value="${boardlist.regDate}" pattern="yyyy-MM-dd HH:mm"/><span>|</span>
+						                <span class="cate_view">${boardlist.readcount}</span><span>|</span><span class="cate_comment">${boardlist.commcount}</span></p>
 									</div>
 								</div>
 		        			</c:forEach>
@@ -182,33 +182,33 @@
         			<!-- Search Area -->
                     <div class="pagination-area mt-70">
                         <nav aria-label="Page navigation example">
-                           <c:if test="${ pageInfo.count gt 0 }">
+                           <c:if test="${pageInfo.count gt 0}">
                            		<ul class="pagination">
                            			<%-- [이전] 출력 --%>
-                           			<c:if test="${ pageInfo.startPage gt pageInfo.pageBlock }">
+                           			<c:if test="${pageInfo.startPage gt pageInfo.pageBlock}">
                            				<li class="page-item">
-	                            			<a href="/tipboard/tipboardForm?pageNum=${ pageInfo.startPage-pageInfo.pageBlock }&search=${ search }" class="page-link-move">[이전]</a>
+	                            			<a href="/tipboard/tipboardForm?pageNum=${pageInfo.startPage-pageInfo.pageBlock}&search=${search}" class="page-link-move">[이전]</a>
 	                           			</li>
                            			</c:if>
                            			<%--페이지블록 출력 --%>
-                           			<c:forEach var="i" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" step="1">
+                           			<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1">
                            				<c:choose>
-                           					<c:when test="${ i eq pageNum }">
+                           					<c:when test="${i eq pageNum}">
                            						<li class="page-item active">
-		                           					<a href="/tipboard/tipboardForm?pageNum=${ i }&search=${ search }" class="page-link">${ i }</a>
+		                           					<a href="/tipboard/tipboardForm?pageNum=${i}&search=${search}" class="page-link">${ i }</a>
 		                           				</li>
                            					</c:when>
                            					<c:otherwise>
                            						<li class="page-item">
-		                                   			<a href="/tipboard/tipboardForm?pageNum=${ i }&search=${ search }" class="page-link">${ i }</a>
+		                                   			<a href="/tipboard/tipboardForm?pageNum=${i}&search=${search}" class="page-link">${ i }</a>
 		                               			</li>
                            					</c:otherwise>
                            				</c:choose>
                            			</c:forEach>
                            			<%-- [다음] 출력 --%>
-                           			<c:if test="${ pageInfo.endPage lt pageInfo.pageCount }">
+                           			<c:if test="${pageInfo.endPage lt pageInfo.pageCount}">
                            				<li class="page-item">
-	                           				<a href="/tipboard/tipboardForm?pageNum=${ pageInfo.startPage + pageInfo.pageBlock }&search=${ search }" class="page-link-move">[다음]</a>
+	                           				<a href="/tipboard/tipboardForm?pageNum=${pageInfo.startPage + pageInfo.pageBlock}&search=${search}" class="page-link-move">[다음]</a>
 	                       				</li>
                            			</c:if>
                            		</ul>
@@ -216,14 +216,14 @@
                         </nav>
                         <form action="/tipboard/tipboardForm" method="get">
                         <div class="listwirte">
-                      		<c:if test="${ empty id }">
+                      		<c:if test="${empty id}">
                       			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="idCheck();">
                       		</c:if>
-                      		<c:if test="${ not empty id }">
+                      		<c:if test="${not empty id}">
                       			<input class="btn bueno-btn mt-30" type="button" value="글쓰기" onclick="location.href='/tipboard/writeForm';">
                       		</c:if>
                       		
-							<input type="text" name="search" class="search mt-30" value="${ search }" placeholder="Search">
+							<input type="text" name="search" class="search mt-30" value="${search}" placeholder="Search">
 							<button type="submit" class="btn mt-30">
 								<i class="fa fa-search"></i>
 							</button>

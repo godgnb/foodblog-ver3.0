@@ -57,6 +57,7 @@
 		DELETE FROM tipboard WHERE num = #{num}
 	</delete>
 	
+	
 	<!-- =================== 게시글 댓글 작업 ================  -->
 	
 	<select id="nextCommentNum" resultType="int">

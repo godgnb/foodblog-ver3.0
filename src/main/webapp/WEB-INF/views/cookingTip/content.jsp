@@ -147,12 +147,12 @@ hr {
                             <img id ="postimg" src="${pageContext.request.contextPath}/resources/upload/${attach.filename }">
                         </div>
                         <div class="blog-content">
-                            <h4 class="post-title">${ tipBoard.subject }</h4>
+                            <h4 class="post-title">${tipBoard.subject}</h4>
                             <div class="post-meta mb-50">
-                                <span class="info_writer"><fmt:formatDate value="${ tipBoard.regDate }" pattern="MMMMM dd, yyyy" /></span>
-                                <span class="info_writer">By ${ tipBoard.id }</span>
+                                <span class="info_writer"><fmt:formatDate value="${tipBoard.regDate}" pattern="MMMMM dd, yyyy" /></span>
+                                <span class="info_writer">By ${tipBoard.id}</span>
                             </div>
-                            <div class="post-content">${ tipBoard.content }</div>
+                            <div class="post-content">${tipBoard.content}</div>
                         </div>
                     </div>
 					<hr>
@@ -202,33 +202,33 @@ hr {
 					    <!-- Page Area -->
 	                    <div class="pagination-area mt-70">
 	                        <nav aria-label="Page navigation example">
-	                           <c:if test="${ pageInfo.count gt 0 }">
+	                           <c:if test="${pageInfo.count gt 0}">
 	                           		<ul class="pagination">
 	                           			<%-- [이전] 출력 --%>
-	                           			<c:if test="${ pageInfo.startPage gt pageInfo.pageBlock }">
+	                           			<c:if test="${pageInfo.startPage gt pageInfo.pageBlock}">
 	                           				<li class="page-item">
-		                            			<a href="/tipboard/contentForm?num=${num}&pageNum=${ pageInfo.startPage-pageInfo.pageBlock }" class="page-link-move">[이전]</a>
+		                            			<a href="/tipboard/contentForm?num=${num}&pageNum=${pageInfo.startPage-pageInfo.pageBlock}&commentPageNum=${pageInfo.commentPageNum}" class="page-link-move">[이전]</a>
 		                           			</li>
 	                           			</c:if>
 	                           			<%--페이지블록 출력 --%>
-	                           			<c:forEach var="i" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" step="1">
+	                           			<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1">
 	                           				<c:choose>
-	                           					<c:when test="${ i eq pageInfo.commentPageNum }">
+	                           					<c:when test="${i eq pageInfo.commentPageNum}">
 	                           						<li class="page-item active">
-			                           					<a href="/tipboard/contentForm?num=${num}&pageNum=${ i }" class="page-link">${ i }</a>
+			                           					<a href="/tipboard/contentForm?num=${num}&pageNum=${pageNum}&commentPageNum=${i}" class="page-link">${ i }</a>
 			                           				</li>
 	                           					</c:when>
 	                           					<c:otherwise>
 	                           						<li class="page-item">
-			                                   			<a href="/tipboard/contentForm?num=${num}&pageNum=${ i }" class="page-link">${ i }</a>
+			                                   			<a href="/tipboard/contentForm?num=${num}&pageNum=${pageNum}&commentPageNum=${i}" class="page-link">${ i }</a>
 			                               			</li>
 	                           					</c:otherwise>
 	                           				</c:choose>
 	                           			</c:forEach>
 	                           			<%-- [다음] 출력 --%>
-	                           			<c:if test="${ pageInfo.endPage lt pageInfo.pageCount }">
+	                           			<c:if test="${pageInfo.endPage lt pageInfo.pageCount}">
 	                           				<li class="page-item">
-		                           				<a href="/tipboard/contentForm?num=${num}&pageNum=${ pageInfo.startPage + pageInfo.pageBlock }" class="page-link-move">[다음]</a>
+		                           				<a href="/tipboard/contentForm?num=${num}&pageNum=${pageInfo.startPage + pageInfo.pageBlock}&commentPageNum=${pageInfo.commentPageNum}" class="page-link-move">[다음]</a>
 		                       				</li>
 	                           			</c:if>
 	                           		</ul>
@@ -242,9 +242,10 @@ hr {
 						<!-- Reply Form -->
 						<h4 class="mb-50">Leave a reply</h4>
 						<div class="contact-form-area">	
-						    <form action="commentWrite.do" method="post">
+						    <form action="/tipboard/commentWrite" method="post">
 						    <input type="hidden" name="num" id ="num" value="${tipBoard.num}"> 
 						    <input type="hidden" name="pageNum" id ="pageNum" value="${pageNum}">
+						    <input type="hidden" name="commentPageNum" id="commentPageNum" value="${pageInfo.commentPageNum}">
 						        <div class="row">
 						            <div class="col-12 col-lg-6">
 						                <input type="text" class="form-control" name="id" id="id" value="${id}" placeholder="id" readonly>

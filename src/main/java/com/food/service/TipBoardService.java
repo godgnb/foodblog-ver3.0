@@ -122,12 +122,24 @@ public class TipBoardService {
 	} // getCommentCount method
 	
 	
+	// insert할 게시물의 댓글번호 생성 메소드
+	public int nextCommentNum() {
+		int bnum = tipboardMapper.nextCommentNum();
+		
+		return bnum;
+	} // nextCommentNum method
 	
 	
+	// 게시글에 댓글 한개 등록하는 메소드
+	public void insertComment(TipBoardCommentVO tipboardcommentVO) {
+		tipboardMapper.insertComment(tipboardcommentVO);
+	} // insertComment method
 	
 	
-	
-	
+	// 특정 레코드의 댓글수를 1증가시키는 메소드
+	public void commCountUp(int num) {
+		tipboardMapper.commCountUp(num);
+	} // commCountUp method
 	
 	
 	
