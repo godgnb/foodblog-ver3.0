@@ -257,7 +257,7 @@ public class TipBoardDao {
 			// 인터페이스를 구현한 Mapper 프록시 객체를 만들어서 리턴함
 			TipboardMapper mapper = sqlSession.getMapper(TipboardMapper.class);
 			
-			mapper.editComment(tipBoardCommentVO);
+			mapper.updateComment(tipBoardCommentVO);
 			
 			sqlSession.commit();
 		}

@@ -101,7 +101,7 @@
 		SELECT * FROM tipboardcomment WHERE re_num = #{reNum}
 	</select>
 	
-	<update id="editComment">
+	<update id="updateComment">
 		UPDATE tipboardcomment
 		SET content = #{content}
 		WHERE re_num = #{reNum}

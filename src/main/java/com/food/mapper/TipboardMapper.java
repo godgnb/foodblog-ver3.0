@@ -63,7 +63,7 @@ public interface TipboardMapper {
 	public TipBoardCommentVO getComment(int reNum);
 	
 	// 댓글 수정하기 메소드
-	public void editComment(TipBoardCommentVO tipBoardCommentVO);
+	public void updateComment(TipBoardCommentVO tipBoardCommentVO);
 	
 	// 특정 게시글 댓글 개수 가져오기 메소드
 	public int getCommentCount(int num);

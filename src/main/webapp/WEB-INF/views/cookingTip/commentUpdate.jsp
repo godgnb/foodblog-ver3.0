@@ -144,15 +144,15 @@ hr {
                 <div class="col-12 col-lg-8 col-xl-9">
                     <div class="post-details-content mb-100">
                        	<div class=" mb-50">
-                            <img id ="postimg" src="${pageContext.request.contextPath}/upload/${attach.filename }">
+                            <img id ="postimg" src="${pageContext.request.contextPath}/upload/${attach.filename}">
                         </div>
                         <div class="blog-content">
-                            <h4 class="post-title">${ tipBoard.subject }</h4>
+                            <h4 class="post-title">${tipBoard.subject}</h4>
                             <div class="post-meta mb-50">
-                                <span class="info_writer"><fmt:formatDate value="${ tipBoard.regDate }" pattern="MMMMM dd, yyyy" /></span>
-                                <span class="info_writer">By ${ tipBoard.id }</span>
+                                <span class="info_writer"><fmt:formatDate value="${tipBoard.regDate}" pattern="MMMMM dd, yyyy" /></span>
+                                <span class="info_writer">By ${tipBoard.id}</span>
                             </div>
-                            <div class="post-content">${ tipBoard.content }</div>
+                            <div class="post-content">${tipBoard.content}</div>
                         </div>
                     </div>
 					<hr>
@@ -160,8 +160,8 @@ hr {
 					<div class="comment_area clearfix mb-100">
 					    <h4 class="mb-50">Comments</h4>
 					     <ol>
-					     <%-- <c:choose>
-							<c:when test="${pageNum != null}"> --%>
+					     <c:choose>
+							<c:when test="${pageInfo.count gt 0}">
 								<c:forEach var="commentlist" items="${commentList}">
 							        <!-- Single Comment Area -->
 							        <li class="single_comment_area">
@@ -178,7 +178,7 @@ hr {
 							            </div>
 				       				</li>
 			       				</c:forEach>
-							<%-- </c:when>
+							</c:when>
 							<c:otherwise>
 								<div class="media">
 				                	<div class="media-body">
@@ -186,14 +186,50 @@ hr {
 									</div>
 								</div>
 							</c:otherwise>
-						</c:choose> --%>
+						</c:choose>
 					    </ol>
+					    <!-- Page Area -->
+	                    <div class="pagination-area mt-70">
+	                        <nav aria-label="Page navigation example">
+	                           <c:if test="${pageInfo.count gt 0}">
+	                           		<ul class="pagination">
+	                           			<%-- [이전] 출력 --%>
+	                           			<c:if test="${pageInfo.startPage gt pageInfo.pageBlock}">
+	                           				<li class="page-item">
+		                            			<a href="/tipboard/contentForm?num=${num}&pageNum=${pageInfo.startPage-pageInfo.pageBlock}&commentPageNum=${pageInfo.commentPageNum}" class="page-link-move">[이전]</a>
+		                           			</li>
+	                           			</c:if>
+	                           			<%--페이지블록 출력 --%>
+	                           			<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1">
+	                           				<c:choose>
+	                           					<c:when test="${i eq pageInfo.commentPageNum}">
+	                           						<li class="page-item active">
+			                           					<a href="/tipboard/contentForm?num=${num}&pageNum=${pageNum}&commentPageNum=${i}" class="page-link">${ i }</a>
+			                           				</li>
+	                           					</c:when>
+	                           					<c:otherwise>
+	                           						<li class="page-item">
+			                                   			<a href="/tipboard/contentForm?num=${num}&pageNum=${pageNum}&commentPageNum=${i}" class="page-link">${ i }</a>
+			                               			</li>
+	                           					</c:otherwise>
+	                           				</c:choose>
+	                           			</c:forEach>
+	                           			<%-- [다음] 출력 --%>
+	                           			<c:if test="${pageInfo.endPage lt pageInfo.pageCount}">
+	                           				<li class="page-item">
+		                           				<a href="/tipboard/contentForm?num=${num}&pageNum=${pageInfo.startPage + pageInfo.pageBlock}&commentPageNum=${pageInfo.commentPageNum}" class="page-link-move">[다음]</a>
+		                       				</li>
+	                           			</c:if>
+	                           		</ul>
+	                           </c:if>
+	                        </nav>
+						</div>
 					</div>
 					<div class="post-a-comment-area mb-30 clearfix">
 						<!-- Reply Form -->
 						<h4 class="mb-50">Edit a reply</h4>
 						<div class="contact-form-area">	
-						    <form action="commentEdit.do" method="post">
+						    <form action="/tipboardcomment/commentUpdate" method="post">
 						    <input type="hidden" name="num" id ="num" value="${tipBoard.num}"> 
 						    <input type="hidden" name="pageNum" id ="pageNum" value="${pageNum}">
 						    <input type="hidden" name="reNum" id ="reNum" value="${reNum}">
@@ -202,10 +238,10 @@ hr {
 						                <input type="text" class="form-control" name="id" id="id" value="${id}" readonly>
 						            </div>
 						            <div class="col-12">
-						                <textarea name="content" class="form-control" name="content" id="content" cols="30" rows="10">${tipboardcomment.content}</textarea>
+						                <textarea name="content" class="form-control" name="content" id="content" cols="30" rows="10" required>${tipboardcomment.content}</textarea>
 						            </div>
 						            <div class="col-12">
-						                <button class="btn bueno-btn mt-30" type="button" onclick="location.href='tipboardForm.do?pageNum=${pageNum}';">목록보기</button>
+						                <button class="btn bueno-btn mt-30" type="button" onclick="location.href='/tipboard/tipboardForm?pageNum=${pageNum}';">목록보기</button>
 						                <button class="btn bueno-btn mt-30" type="submit" id="rewrite">수정하기</button>
 						            </div>
 						        </div>

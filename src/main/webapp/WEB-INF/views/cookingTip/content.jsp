@@ -176,11 +176,11 @@ hr {
 							                    	</c:if>
 							                 	    <c:if test="${id eq commentlist.id}">
 							                 	    	<span class="post-date" id="comment_date"><fmt:formatDate value="${commentlist.regDate}" pattern="yyyy.MM.dd HH:mm"/></span>
-								                 	    <span class="post-date" id="comment_edit">
-								                 	    	<a href="commentEditForm.do?num=${commentlist.num}&pageNum=${pageNum}&reNum=${commentlist.reNum}">수정</a>
+								                 	    <span class="post-date" id="comment_update">
+								                 	    	<a href="/tipboardcomment/commentUpdateForm?num=${commentlist.num}&pageNum=${pageNum}&reNum=${commentlist.reNum}&commentPageNum=${pageInfo.commentPageNum}">수정</a>
 								                 	    </span>
 						                                <span class="reply" id="comment_delete">
-						                                	<a href="commentDelete.do?num=${commentlist.num}&pageNum=${pageNum}&reNum=${commentlist.reNum}">삭제</a>
+						                                	<a href="/tipboardcomment/commentDelete?num=${commentlist.num}&pageNum=${pageNum}&reNum=${commentlist.reNum}">삭제</a>
 						                                </span>
 					                                </c:if>
 							                    </div>
@@ -242,7 +242,7 @@ hr {
 						<!-- Reply Form -->
 						<h4 class="mb-50">Leave a reply</h4>
 						<div class="contact-form-area">	
-						    <form action="/tipboard/commentWrite" method="post">
+						    <form action="/tipboardcomment/commentWrite" method="post">
 						    <input type="hidden" name="num" id ="num" value="${tipBoard.num}"> 
 						    <input type="hidden" name="pageNum" id ="pageNum" value="${pageNum}">
 						    <input type="hidden" name="commentPageNum" id="commentPageNum" value="${pageInfo.commentPageNum}">
@@ -251,7 +251,7 @@ hr {
 						                <input type="text" class="form-control" name="id" id="id" value="${id}" placeholder="id" readonly>
 						            </div>
 						            <div class="col-12">
-						                <textarea name="content" class="form-control" name="content" id="content" cols="30" rows="10" placeholder="Comment"></textarea>
+						                <textarea name="content" class="form-control" name="content" cols="30" rows="10" placeholder="Comment*" required></textarea>
 						            </div>
 						            <div class="col-12">
 						                <button class="btn bueno-btn mt-30" type="button" onclick="location.href='/tipboard/tipboardForm?pageNum=${pageNum}';">목록보기</button>
