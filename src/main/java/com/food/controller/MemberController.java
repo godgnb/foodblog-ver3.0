@@ -157,7 +157,7 @@ public class MemberController {
 	
 	
 	@PostMapping("/accountUpdate") // 회원수정 진행
-	public ResponseEntity<String> update(MemberVO memberVO) {
+	public ResponseEntity<String> accountUpdate(MemberVO memberVO) {
 		// 패스워드 일치 메소드 호출
 		int check = memberService.userCheck(memberVO.getId(), memberVO.getPasswd());
 		
@@ -184,7 +184,7 @@ public class MemberController {
 		sb.append("</script>");
 		
 		return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
-	} // update
+	} // accountUpdate post
 	
 	
 	@GetMapping("/adminForm")
@@ -193,8 +193,8 @@ public class MemberController {
 	} // adminForm get
 	
 	
-	@GetMapping("/allMember")
-	public String allMember(
+	@GetMapping("/allMemberForm")
+	public String allMemberForm(
 			@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "", required = false) String search,
 			Model model) {
@@ -247,13 +247,72 @@ public class MemberController {
 		model.addAttribute("search", search);
 		
 		return "member/allMember";
-	} // allMember get
+	} // allMemberForm get
 	
 	
+	@GetMapping("/allMemberDeleteForm")
+	public String allMemberDeleteForm(@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(defaultValue = "", required = false) String search,
+			Model model) {
+		// ===========================================
+		// 한 페이지에 해당하는 회원정보목록 구하기 작업
+		
+		// 한페이지에 보여줄 회원정보 개수
+		int pageSize = 10;
+	
+		// 시작행번호 구하기
+		int startRow = (pageNum - 1) * pageSize + 1;
+		
+		// 전체회원정보 가져오기 메소드 호출
+		List<MemberVO> memberList = memberService.getMembers(startRow, pageSize, search);
+		
+		// ===========================================
+		// 페이지 블록 관련정보 구하기 작업
+		
+		// 전체회원 수 가져오기 메소드 호출
+		int count = memberService.memberCount(search);
+		
+		//전체 회원수 / 한페이지당 회원정보개수 (+1 : 나머지 있을때)
+    	int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+    	
+    	// 페이지블록 수 설정
+    	int pageBlock = 10;
+    	
+    	// 시작페이지번호 startPage 구하기
+    	int startPage = ((pageNum - 1) / pageBlock) * pageBlock + 1;
+    	
+    	// 끝페이지번호 endPage 구하기
+    	int endPage = startPage + pageBlock - 1;
+    	if (endPage > pageCount) {
+    		endPage = pageCount;
+    	}
+		
+    	// 페이지블록 관련정보를 Map 또는 VO 객체로 준비
+    	Map<String, Integer> pageInfo = new HashMap<String, Integer>();
+    	pageInfo.put("count", count);
+    	pageInfo.put("pageCount", pageCount);
+    	pageInfo.put("pageBlock", pageBlock);
+    	pageInfo.put("startPage", startPage);
+    	pageInfo.put("endPage", endPage);
+    	
+    	
+		// 뷰(jsp)에 사용할 데이터를 request 영역개체에 저장
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("search", search);
+		
+		return "member/allMemberDelete";
+
+	} // allMemberDeleteForm get
 	
 	
-	
-	
+	@PostMapping("/allMemberDelete")
+	public String allMemberDelete(String check_del) {
+		
+		
+		return "";
+	} // allMemberDelete post
 	
 	
 	

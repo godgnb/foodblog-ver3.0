@@ -130,29 +130,32 @@
                             <h4 class="post-title" style="font-size: 40px">전체회원수: ${pageInfo.count}</h4>
                         </div>
                     </div>
-			        <table border="1">
-			        	<thead>
-				        	<tr>
-				        		<th scope="col">아이디</th>
-				        		<th scope="col">이름</th>
-				        		<th scope="col">휴대폰번호</th>
-				        		<th scope="col">이메일</th>
-				        		<th scope="col">가일날짜</th>
-				        	</tr>
-			        	</thead>
-			        	<tbody>
-				        	<c:forEach var="member" items="${memberList}">
-				        		<tr>
-				        			<td>${member.id}</td>
-				        			<td>${member.name}</td>
-				        			<td>${member.phone}</td>
-				        			<td>${member.email}</td>
-				        			<td><fmt:formatDate value="${member.regDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-				        		</tr>
-				        	</c:forEach>
-			        	</tbody>
-			        </table>
-		
+			        <form action="/member/allMemberDelete" method="post">
+				        <table border="1">
+				        	<thead>
+					        	<tr>
+					        		<th scope="col"><input type="checkbox" id="allCheck" onclick="checkAll();"></th>
+					        		<th scope="col">아이디</th>
+					        		<th scope="col">이름</th>
+					        		<th scope="col">휴대폰번호</th>
+					        		<th scope="col">이메일</th>
+					        		<th scope="col">가일날짜</th>
+					        	</tr>
+				        	</thead>
+				        	<tbody>
+					        	<c:forEach var="member" items="${memberList}">
+					        		<tr>
+					        			<td><input type="checkbox" name="rowCheck" value="${member.id}"></td>
+					        			<td>${member.id}</td>
+					        			<td>${member.name}</td>
+					        			<td>${member.phone}</td>
+					        			<td>${member.email}</td>
+					        			<td><fmt:formatDate value="${member.regDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+					        		</tr>
+					        	</c:forEach>
+				        	</tbody>
+				        </table>
+					</form>
 					<!-- Search Area -->
                     <div class="pagination-area mt-70">
                         <nav aria-label="Page navigation example">
@@ -161,7 +164,7 @@
                            			<%-- [이전] 출력 --%>
                            			<c:if test="${ pageInfo.startPage gt pageInfo.pageBlock }">
                            				<li class="page-item">
-	                            			<a href="/member/allMemberForm?pageNum=${ pageInfo.startPage-pageInfo.pageBlock }&search=${ search }" class="page-link-move">[이전]</a>
+	                            			<a href="/member/allMemberDeleteForm?pageNum=${ pageInfo.startPage-pageInfo.pageBlock }&search=${ search }" class="page-link-move">[이전]</a>
 	                           			</li>
                            			</c:if>
                            			<%--페이지블록 출력 --%>
@@ -169,12 +172,12 @@
                            				<c:choose>
                            					<c:when test="${ i eq pageNum }">
                            						<li class="page-item active">
-		                           					<a href="/member/allMemberForm?pageNum=${ i }&search=${ search }" class="page-link">${ i }</a>
+		                           					<a href="/member/allMemberDeleteForm?pageNum=${ i }&search=${ search }" class="page-link">${ i }</a>
 		                           				</li>
                            					</c:when>
                            					<c:otherwise>
                            						<li class="page-item">
-		                                   			<a href="/member/allMemberForm?pageNum=${ i }&search=${ search }" class="page-link">${ i }</a>
+		                                   			<a href="/member/allMemberDeleteForm?pageNum=${ i }&search=${ search }" class="page-link">${ i }</a>
 		                               			</li>
                            					</c:otherwise>
                            				</c:choose>
@@ -182,13 +185,13 @@
                            			<%-- [다음] 출력 --%>
                            			<c:if test="${ pageInfo.endPage lt pageInfo.pageCount }">
                            				<li class="page-item">
-	                           				<a href="/member/allMemberForm?pageNum=${ pageInfo.startPage + pageInfo.pageBlock }&search=${ search }" class="page-link-move">[다음]</a>
+	                           				<a href="/member/allMemberDeleteForm?pageNum=${ pageInfo.startPage + pageInfo.pageBlock }&search=${ search }" class="page-link-move">[다음]</a>
 	                       				</li>
                            			</c:if>
                            		</ul>
                            </c:if>
                         </nav>
-                        <form action="/member/allMemberForm" method="get">
+                        <form action="/member/allMemberDeleteForm" method="get">
 	                        <div class="listwirte">
 								<input type="text" name="search" class="search" value="${ search }" placeholder="ID Search">
 								<button type="submit" class="btn mt-30">
@@ -220,6 +223,18 @@
     <script src="${pageContext.request.contextPath}/resources/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="${pageContext.request.contextPath}/resources/js/active.js"></script>
+
+<script>
+function checkAll() {
+	if($('#allCheck').is(':checked')) {
+		$("input[name=rowCheck]").prop("checked", true);
+	} else {
+		$("input[name=rowCheck]").prop("checked", false);
+	}
+	
+}
+</script>
+
 
 
 </body>
