@@ -147,7 +147,7 @@
 				        			<td>${member.name}</td>
 				        			<td>${member.phone}</td>
 				        			<td>${member.email}</td>
-				        			<td><fmt:formatDate value="${member.regdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+				        			<td><fmt:formatDate value="${member.regDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 				        		</tr>
 				        	</c:forEach>
 			        	</tbody>
