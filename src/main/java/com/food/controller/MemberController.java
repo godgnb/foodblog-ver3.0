@@ -22,8 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.food.domain.MemberVO;
 import com.food.service.MemberService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/member/*")
+@Log4j
 public class MemberController {
 
 	@Autowired
@@ -205,11 +208,11 @@ public class MemberController {
 		int pageSize = 10;
 	
 		// 시작행번호 구하기
-		int startRow = (pageNum - 1) * pageSize + 1;
+		int startRow = (pageNum - 1) * pageSize;
 		
 		// 전체회원정보 가져오기 메소드 호출
 		List<MemberVO> memberList = memberService.getMembers(startRow, pageSize, search);
-		
+		log.info("memberList: " + memberList);
 		// ===========================================
 		// 페이지 블록 관련정보 구하기 작업
 		
@@ -261,7 +264,7 @@ public class MemberController {
 		int pageSize = 10;
 	
 		// 시작행번호 구하기
-		int startRow = (pageNum - 1) * pageSize + 1;
+		int startRow = (pageNum - 1) * pageSize;
 		
 		// 전체회원정보 가져오기 메소드 호출
 		List<MemberVO> memberList = memberService.getMembers(startRow, pageSize, search);
