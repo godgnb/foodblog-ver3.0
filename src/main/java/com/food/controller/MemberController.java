@@ -1,5 +1,6 @@
 package com.food.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -311,10 +312,28 @@ public class MemberController {
 	
 	
 	@PostMapping("/allMemberDelete")
-	public String allMemberDelete(String check_del) {
+	public ResponseEntity<String> allMemberDelete(@RequestParam("rowCheck") List<String> rowCheckList) {
+		log.info("rowCheckList: " + rowCheckList);
+		log.info(rowCheckList.size());
 		
+		if (!rowCheckList.isEmpty()) {
+			log.info("rowCheckList22222: " + rowCheckList);
+			memberService.deleteMembers(rowCheckList);
+			
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Type", "text/html; charset=UTF-8");
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("<script>");
+			sb.append("alert('회원정보를 삭제하였습니다');");
+			sb.append("location.href='/member/allMemberDeleteForm'");
+			sb.append("</script>");
+
+			return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
+		}
+		  
+		return null;
 		
-		return "";
 	} // allMemberDelete post
 	
 	

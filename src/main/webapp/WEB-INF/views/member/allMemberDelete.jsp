@@ -125,12 +125,12 @@
             <div class="row justify-content-center">
                 <!-- Post Details Content Area -->
                 <div class="col-12 col-lg-8 col-xl-9">
-			        <div class="post-details-content">
-                        <div class="blog-content">
-                            <h4 class="post-title" style="font-size: 40px">전체회원수: ${pageInfo.count}</h4>
-                        </div>
-                    </div>
 			        <form action="/member/allMemberDelete" method="post">
+				        <div class="post-details-content">
+	                        <div class="blog-content">
+	                            <h4 class="post-title" style="font-size: 40px">전체회원수: ${pageInfo.count}</h4>
+	                        </div>
+	                    </div>
 				        <table border="1">
 				        	<thead>
 					        	<tr>
@@ -145,7 +145,7 @@
 				        	<tbody>
 					        	<c:forEach var="member" items="${memberList}">
 					        		<tr>
-					        			<td><input type="checkbox" name="rowCheck" value="${member.id}"></td>
+					        			<td><input type="checkbox" id="rowCheck" name="rowCheck" value="${member.id}"></td>
 					        			<td>${member.id}</td>
 					        			<td>${member.name}</td>
 					        			<td>${member.phone}</td>
@@ -155,6 +155,7 @@
 					        	</c:forEach>
 				        	</tbody>
 				        </table>
+				        <input type="submit" id="deletebtn" value="회원삭제">
 					</form>
 					<!-- Search Area -->
                     <div class="pagination-area mt-70">
@@ -234,9 +235,6 @@ function checkAll() {
 	
 }
 </script>
-
-
-
 </body>
 
 </html>
