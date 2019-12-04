@@ -69,6 +69,13 @@ public class MemberService {
 	} // deleteMember method
 	
 	
+	// 다중회원정보 삭제하기 메소드
+	public void deleteMembers(List<String> rowCheckList) {
+		// 다중 회원 정보 삭제
+		memberMapper.deleteMembers(rowCheckList);
+	} // deleteMembers method
+	
+	
 	// 회원정보 수정하기 메소드
 	public void updateMember(MemberVO memberVO) {
 		// 회원 정보 수정

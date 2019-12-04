@@ -25,12 +25,22 @@
 		DELETE FROM admin.member WHERE id = #{id}
 	</delete>
 	
+	<delete id="deleteMembers">
+		DELETE FROM admin.member
+		<where>
+			id IN
+			<foreach item="item" collection="rowCheckList" index="index" separator="','" open="('" close="')">
+				#{item}
+			</foreach>
+		</where>
+	</delete>
+	
 	<select id="getMembers" resultType="MemberVO">
 		SELECT *
 		FROM admin.member
-		WHERE not id = 'admin'
+		WHERE NOT id = 'admin'
 			<if test="search != null and search != ''">
-				and id LIKE CONCAT('%', #{search}, '%')
+				and id LIKE CONCAT("%", #{search}, "%")
 			</if>
 		ORDER BY reg_date
 		LIMIT #{pageSize} OFFSET #{startRow}
