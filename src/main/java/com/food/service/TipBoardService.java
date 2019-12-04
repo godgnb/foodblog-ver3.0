@@ -108,10 +108,24 @@ public class TipBoardService {
 	} // getComments method
 	
 	
+	// 댓글 한개를 가져오는 메소드
+	public TipBoardCommentVO getComment(int reNum) {
+		TipBoardCommentVO tipBoardCommentVO = tipboardMapper.getComment(reNum);
+		
+		return tipBoardCommentVO;
+	} // getComment method
+	
+	
 	// 게시글 전체 삭제하기 메소드
 	public void deleteComments(int num) {
 		tipboardMapper.deleteComments(num);
 	} // deleteComments method
+	
+	
+	// 댓글 삭제하기 메소드
+	public void deleteComment(int reNum) {
+		tipboardMapper.deleteComment(reNum);
+	} // deleteComment method
 	
 	
 	// 특정 게시글 댓글 개수 가져오기 메소드
@@ -142,7 +156,16 @@ public class TipBoardService {
 	} // commCountUp method
 	
 	
+	// 특정 레코드의 댓글수를 1감소시키는 메소드
+	public void commCountDown(int num) {
+		tipboardMapper.commCountDown(num);
+	} // commCountDown method
 	
+	
+	// 댓글 수정하기 메소드
+	public void updateComment(TipBoardCommentVO tipBoardCommentVO) {
+		tipboardMapper.updateComment(tipBoardCommentVO);
+	} // updateComment method
 	
 	
 } // TipBoardService class
