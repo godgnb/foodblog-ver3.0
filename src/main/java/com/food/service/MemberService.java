@@ -2,7 +2,13 @@ package com.food.service;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +22,10 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
-	// 회원가입 매소드
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	// 회원가입 메소드
 	public int insertMember(MemberVO memberVO) {
 		return memberMapper.insertMember(memberVO);
 	} // insertMember method
@@ -51,6 +60,38 @@ public class MemberService {
 		}
 		return isIdDupCheck;
 	} // isIdDupCheck method
+	
+	
+	// 이메일 인증번호 보내는 메소드
+	public void sendEmail(String from, String to, String subject, String text) {
+		MimeMessage message = mailSender.createMimeMessage();
+		
+		try {
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			
+			messageHelper.setFrom(from);
+			messageHelper.setTo(to);
+			messageHelper.setSubject(subject);
+			messageHelper.setText(text);
+			
+			mailSender.send(message);
+			
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	} // sendEmail method
+	
+	
+	// 이메일 인증번호 확인 메소드
+	public boolean emailCheck(String inputNumber, String authCode) {
+		boolean result = false;
+		
+		if(inputNumber.equals(authCode)) {
+			result = true;
+		}
+		
+		return result;
+	} // emailCheck method
 	
 	
 	// 회원정보 불러오는 메소드 호출

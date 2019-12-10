@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="">
-	<input type="text" name="inputnumber" id="inputnumber" placeholder="인증번호를 입력하세요">
+	<input type="text" name="inputNumber" id="inputNumber" placeholder="인증번호를 입력하세요">
 	<button type="button" name="btn" id="btn">인증하기</button><br>
 	<span id="number_check"></span>
 </form>
@@ -17,11 +17,11 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery/jquery-2.2.4.min.js"></script>
 <script>
 $('#btn').click(function () {
-	var inputnumber = $('#inputnumber').val();
+	var inputNumber = $('#inputNumber').val();
 	
 	$.ajax({
 		url: '/member/registerEmailCheck',
-		data: {inputnumber: inputnumber},
+		data: {inputNumber: inputNumber},
 		success: function (data) {
 			if (data == true) {
 				close();

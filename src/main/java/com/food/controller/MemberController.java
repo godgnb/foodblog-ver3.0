@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +32,6 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@Autowired
-	private JavaMailSender mailSender;
 	
 	@GetMapping("/loginForm") // 로그인 페이지이동
 	public String loginForm() {
@@ -75,25 +72,33 @@ public class MemberController {
 	
 	
 	@GetMapping("/registerEmailCheckForm") // 이메일 인증
-	public String registerEmailCheckForm(String inputEmail) {
+	public String registerEmailCheckForm(String inputEmail, HttpSession session) {
 		log.info("inputEmail: " + inputEmail);
 		
-		String setfrom = "godgnb123@google.com";
-		String tomail = inputEmail;
-		String title = "회원가입 이메일인증번호입니다.";
-		String content = "인증번호는 111111 입니다.";
+		String from = "godgnb123@google.com";
+		String to = inputEmail;
+		String authCode = "111111";
+		String subject = "회원가입 이메일인증번호입니다.";
+		String text = "인증번호는 " + authCode + " 입니다.";
+		
+		memberService.sendEmail(from, to, subject, text);
+		
+		session.setAttribute("authCode", authCode);
 		
 		return "member/registerEmailCheck";
 	} // registerEmailCheckForm get
 	
 	
-	@GetMapping("/registerEmailCheck")
-	public String registerEmailCheck() {
+	@GetMapping("/registerEmailCheck") // 이메일 인증 진행
+	@ResponseBody
+	public boolean registerEmailCheck(String inputNumber, HttpSession session) {
+		String authCode =(String) session.getAttribute("authCode");
 		
+		boolean result = memberService.emailCheck(inputNumber, authCode);
 		
-		
-		return "";
+		return result;
 	} // registerEmailCheck get
+	
 	
 	@PostMapping("/register") // 회원가입 진행
 	public String register(MemberVO memberVO) {
