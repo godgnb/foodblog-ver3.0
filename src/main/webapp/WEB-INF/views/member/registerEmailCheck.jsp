@@ -20,7 +20,7 @@ $('#btn').click(function () {
 	var inputnumber = $('#inputnumber').val();
 	
 	$.ajax({
-		url: 'registerEmailCheck.do',
+		url: '/member/registerEmailCheck',
 		data: {inputnumber: inputnumber},
 		success: function (data) {
 			if (data == true) {

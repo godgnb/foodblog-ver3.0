@@ -160,33 +160,33 @@
 					<!-- Search Area -->
                     <div class="pagination-area mt-70">
                         <nav aria-label="Page navigation example">
-                           <c:if test="${ pageInfo.count gt 0 }">
+                           <c:if test="${pageInfo.count gt 0}">
                            		<ul class="pagination">
                            			<%-- [이전] 출력 --%>
-                           			<c:if test="${ pageInfo.startPage gt pageInfo.pageBlock }">
+                           			<c:if test="${pageInfo.startPage gt pageInfo.pageBlock}">
                            				<li class="page-item">
-	                            			<a href="/member/allMemberDeleteForm?pageNum=${ pageInfo.startPage-pageInfo.pageBlock }&search=${ search }" class="page-link-move">[이전]</a>
+	                            			<a href="/member/allMemberDeleteForm?pageNum=${pageInfo.startPage-pageInfo.pageBlock}&search=${search}" class="page-link-move">[이전]</a>
 	                           			</li>
                            			</c:if>
                            			<%--페이지블록 출력 --%>
-                           			<c:forEach var="i" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" step="1">
+                           			<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1">
                            				<c:choose>
-                           					<c:when test="${ i eq pageNum }">
+                           					<c:when test="${i eq pageNum}">
                            						<li class="page-item active">
-		                           					<a href="/member/allMemberDeleteForm?pageNum=${ i }&search=${ search }" class="page-link">${ i }</a>
+		                           					<a href="/member/allMemberDeleteForm?pageNum=${i}&search=${search}" class="page-link">${i}</a>
 		                           				</li>
                            					</c:when>
                            					<c:otherwise>
                            						<li class="page-item">
-		                                   			<a href="/member/allMemberDeleteForm?pageNum=${ i }&search=${ search }" class="page-link">${ i }</a>
+		                                   			<a href="/member/allMemberDeleteForm?pageNum=${i}&search=${search}" class="page-link">${i}</a>
 		                               			</li>
                            					</c:otherwise>
                            				</c:choose>
                            			</c:forEach>
                            			<%-- [다음] 출력 --%>
-                           			<c:if test="${ pageInfo.endPage lt pageInfo.pageCount }">
+                           			<c:if test="${pageInfo.endPage lt pageInfo.pageCount}">
                            				<li class="page-item">
-	                           				<a href="/member/allMemberDeleteForm?pageNum=${ pageInfo.startPage + pageInfo.pageBlock }&search=${ search }" class="page-link-move">[다음]</a>
+	                           				<a href="/member/allMemberDeleteForm?pageNum=${pageInfo.startPage + pageInfo.pageBlock}&search=${search}" class="page-link-move">[다음]</a>
 	                       				</li>
                            			</c:if>
                            		</ul>
@@ -194,7 +194,7 @@
                         </nav>
                         <form action="/member/allMemberDeleteForm" method="get">
 	                        <div class="listwirte">
-								<input type="text" name="search" class="search" value="${ search }" placeholder="ID Search">
+								<input type="text" name="search" class="search" value="${search}" placeholder="ID Search">
 								<button type="submit" class="btn mt-30">
 									<i class="fa fa-search"></i>
 								</button>

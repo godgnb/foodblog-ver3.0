@@ -200,10 +200,10 @@ function winOpen() {
 		return;
 	}
 	
-	var childWindow = window.open('registerEmailCheckForm.do?inputEmail=' + inputEmail, '', 'width=400,height=300');
+	var childWindow = window.open('/member/registerEmailCheckForm?inputEmail=' + inputEmail, '', 'width=400,height=300');
 }
 </script>
-<!-- <script>
+<script>
 function check() {
 	if ($('#com_email').text() != '인증되었습니다.') {
 		alert('이메일인증은 필수입니다.');
@@ -212,7 +212,7 @@ function check() {
 	}
 	return true;
 }
-</script> -->
+</script>
 </body>
 
 </html>

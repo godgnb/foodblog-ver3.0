@@ -1,6 +1,5 @@
 package com.food.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +32,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	@GetMapping("/loginForm") // 로그인 페이지이동
 	public String loginForm() {
@@ -70,6 +73,27 @@ public class MemberController {
 		return isIdDup;
 	} // registerIdDupCheck
 	
+	
+	@GetMapping("/registerEmailCheckForm") // 이메일 인증
+	public String registerEmailCheckForm(String inputEmail) {
+		log.info("inputEmail: " + inputEmail);
+		
+		String setfrom = "godgnb123@google.com";
+		String tomail = inputEmail;
+		String title = "회원가입 이메일인증번호입니다.";
+		String content = "인증번호는 111111 입니다.";
+		
+		return "member/registerEmailCheck";
+	} // registerEmailCheckForm get
+	
+	
+	@GetMapping("/registerEmailCheck")
+	public String registerEmailCheck() {
+		
+		
+		
+		return "";
+	} // registerEmailCheck get
 	
 	@PostMapping("/register") // 회원가입 진행
 	public String register(MemberVO memberVO) {
