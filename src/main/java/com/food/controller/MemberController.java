@@ -3,6 +3,7 @@ package com.food.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -74,12 +75,15 @@ public class MemberController {
 	@GetMapping("/registerEmailCheckForm") // 이메일 인증
 	public String registerEmailCheckForm(String inputEmail, HttpSession session) {
 		log.info("inputEmail: " + inputEmail);
+		Random random = new Random();
 		
 		String from = "godgnb123@google.com";
 		String to = inputEmail;
-		String authCode = "111111";
+		int authcode = random.nextInt(900000) + 100000;
+		String authCode = Integer.toString(authcode);
 		String subject = "회원가입 이메일인증번호입니다.";
 		String text = "인증번호는 " + authCode + " 입니다.";
+		log.info("인증번호: " + authCode);
 		
 		memberService.sendEmail(from, to, subject, text);
 		
