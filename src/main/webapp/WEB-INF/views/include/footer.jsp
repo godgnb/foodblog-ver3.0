@@ -13,10 +13,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <!-- Footer Nav -->
                 <div class="footer-nav">
                     <ul>
-                        <li class="active"><a href="main.do">Home</a></li>
+                        <li class="active"><a href="/">Home</a></li>
                         <li><a href="#">Recipes</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="/tipboard/tipboardForm">Cooking Tip</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>

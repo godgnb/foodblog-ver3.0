@@ -36,9 +36,8 @@
 
 				<div class="top-search-area">
 					<form action="#" method="post">
-						<input type="search" name="top-search" id="topSearch"
-							placeholder="Search">
-						<button type="submit" class="btn">
+						<input type="search" name="top-search" id="topSearch" placeholder="Search">
+						<button type="button" class="btn">
 							<i class="fa fa-search"></i>
 						</button>
 					</form>
@@ -85,26 +84,13 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="#">Recipes</a>
                                 <ul class="dropdown">
-                                    <li><a href="../remain/catagory.jsp">10분 간단 Recipes</a></li>
-                                    <li><a href="../remain/catagory-post.jsp">자취생 Recipes</a></li>
-                                    <li><a href="../remain/single-post.jsp">편의점 Recipes</a></li>
-                                    <li><a href="../remain/receipe.jsp">한끼 든든 Recipes</a></li>
+                                    <li><a href="#">10분 간단 Recipes</a></li>
+                                    <li><a href="#">자취생 Recipes</a></li>
+                                    <li><a href="#">편의점 Recipes</a></li>
+                                    <li><a href="#">한끼 든든 Recipes</a></li>
                                     <li><a href="#">전문가 Recipes</a></li>
                                 </ul>
                             </li>
-<!--                             <li><a href="#">Recipes</a> -->
-<!--                                 <div class="megamenu"> -->
-<!--                                     <ul class="single-mega cn-col-4"> -->
-<!--                                         <li><a href="#">- Recipe</a></li> -->
-<!--                                         <li><a href="#">- Bread</a></li> -->
-<!--                                         <li><a href="#">- Breakfast</a></li> -->
-<!--                                         <li><a href="#">- Meat</a></li> -->
-<!--                                         <li><a href="#">- Fastfood</a></li> -->
-<!--                                         <li><a href="#">- Salad</a></li> -->
-<!--                                         <li><a href="#">- Soup</a></li> -->
-<!--                                     </ul> -->
-<!--                                 </div> -->
-<!--                             </li> -->
                             <li><a href="/tipboard/tipboardForm">Cooking Tip</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>
