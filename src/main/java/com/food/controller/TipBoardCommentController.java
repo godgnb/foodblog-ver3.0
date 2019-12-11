@@ -78,7 +78,7 @@ public class TipBoardCommentController {
 	
 	
 	@GetMapping("/commentUpdateForm")
-	public String commentUpdateForm(int num, int pageNum,@RequestParam("commentPageNum") int commentPageNum, int reNum, Model model) {
+	public String commentUpdateForm(int num, int pageNum, @RequestParam("commentPageNum") int commentPageNum, int reNum, Model model) {
 		//========= 수정할 글 정보 가져오기 ==============
 		// 수정할 글 글번호로 가져오기
 		TipBoardVO tipBoardVO = tipBoardService.getboardTip(num);
@@ -132,7 +132,6 @@ public class TipBoardCommentController {
 		pageInfo.put("endPage", endPage);
 		
 		// request 영역개체에 저장
-		model.addAttribute("num", num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("tipBoard", tipBoardVO);
 		model.addAttribute("attach", tipBoardAttachVO);
@@ -146,7 +145,7 @@ public class TipBoardCommentController {
 	
 	
 	@PostMapping("/commentUpdate")
-	public String commentUpdate(int num, int pageNum, int reNum, TipBoardCommentVO tipBoardCommentVO, Model model) {
+	public String commentUpdate(int num, int pageNum, TipBoardCommentVO tipBoardCommentVO, Model model) {
 		// =========== 댓글 수정 작업 ===============
 		// 댓글 한개 수정하는 메소드 호출
 		tipBoardService.updateComment(tipBoardCommentVO);

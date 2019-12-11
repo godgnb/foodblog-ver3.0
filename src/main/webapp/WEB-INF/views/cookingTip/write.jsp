@@ -70,58 +70,7 @@
 
 
     <!-- ##### Search Area Start ##### -->
-    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(${pageContext.request.contextPath}/resources/img/core-img/pattern.png);">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <form action="#" method="post">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="form-group mb-30">
-                                    <select class="form-control" id="recipe">
-                                      <option value="">Recipe</option>
-                                      <option value="">Recipe 1</option>
-                                      <option value="">Recipe 2</option>
-                                      <option value="">Recipe 3</option>
-                                      <option value="">Recipe 4</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="form-group mb-30">
-                                    <select class="form-control" id="vegan">
-                                      <option value="">Vegan</option>
-                                      <option value="">Vegan 1</option>
-                                      <option value="">Vegan 2</option>
-                                      <option value="">Vegan 3</option>
-                                      <option value="">Vegan 4</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="form-group mb-30">
-                                    <select class="form-control" id="ingredients">
-                                      <option value="">Ingredients</option>
-                                      <option value="">Ingredients 1</option>
-                                      <option value="">Ingredients 2</option>
-                                      <option value="">Ingredients 3</option>
-                                      <option value="">Ingredients 4</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="form-group mb-30">
-                                    <button class="btn bueno-btn w-100">Search</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(${pageContext.request.contextPath}/resources/img/core-img/pattern.png);"></div>
     <!-- ##### Search Area End ##### -->
 
 
