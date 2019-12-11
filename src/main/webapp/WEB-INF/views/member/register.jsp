@@ -69,7 +69,7 @@
 
 
     <!-- ##### Search Area Start ##### -->
-    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(../img/core-img/pattern.png);"></div>
+    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url(${pageContext.request.contextPath}/resources/img/core-img/pattern.png);"></div>
     <!-- ##### Search Area End ##### -->
     
     

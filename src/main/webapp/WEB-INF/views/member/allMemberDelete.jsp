@@ -91,22 +91,6 @@
                                 <div class="form-group mb-30">
                                     <select class="form-control" id="vegan">
                                       <option value="">게시판관리</option>
-                                      <option value="">Vegan 1</option>
-                                      <option value="">Vegan 2</option>
-                                      <option value="">Vegan 3</option>
-                                      <option value="">Vegan 4</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="form-group mb-30">
-                                    <select class="form-control" id="ingredients">
-                                      <option value="">Ingredients</option>
-                                      <option value="">Ingredients 1</option>
-                                      <option value="">Ingredients 2</option>
-                                      <option value="">Ingredients 3</option>
-                                      <option value="">Ingredients 4</option>
                                     </select>
                                 </div>
                             </div>
