@@ -112,6 +112,7 @@ public class MemberService {
 	
 	// 다중회원정보 삭제하기 메소드
 	public void deleteMembers(List<String> rowCheckList) {
+		System.out.println("rowCheckList S: " + rowCheckList);
 		// 다중 회원 정보 삭제
 		memberMapper.deleteMembers(rowCheckList);
 	} // deleteMembers method

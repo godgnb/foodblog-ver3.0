@@ -109,7 +109,7 @@
             <div class="row justify-content-center">
                 <!-- Post Details Content Area -->
                 <div class="col-12 col-lg-8 col-xl-9">
-			        <form action="/member/allMemberDelete" method="post">
+			        <form action="/member/allMemberDelete" method="post" onsubmit="return checkDelete();">
 				        <div class="post-details-content">
 	                        <div class="blog-content">
 	                            <h4 class="post-title" style="font-size: 40px">전체회원수: ${pageInfo.count}</h4>
@@ -218,6 +218,16 @@ function checkAll() {
 	}
 	
 }
+</script>
+<script>
+function checkDelete() {
+	if ($("input:checkbox[name=rowCheck]").is(":checked") == false) {
+		alert('삭제할 회원정보를 선택해주세요');
+		return false;
+	}
+	return true;
+}
+
 </script>
 </body>
 
