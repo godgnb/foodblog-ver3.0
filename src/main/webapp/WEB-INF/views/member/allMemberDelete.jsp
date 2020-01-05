@@ -81,7 +81,6 @@
                                     <select class="form-control" id="member" onchange="window.open(value,'_self')">
                                       <option value="">회원관리</option>
                                       <option value="/member/allMemberForm">전체회원정보보기</option>
-                                      <option value="">전체회원정보수정</option>
                                       <option value="/member/allMemberDeleteForm">전체회원정보삭제</option>
                                     </select>
                                 </div>

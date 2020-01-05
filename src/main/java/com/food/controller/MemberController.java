@@ -340,7 +340,6 @@ public class MemberController {
 		model.addAttribute("search", search);
 		
 		return "member/allMemberDelete";
-
 	} // allMemberDeleteForm get
 	
 	
@@ -363,7 +362,6 @@ public class MemberController {
 		} 
 		  
 		return null;
-		
 	} // allMemberDelete post
 	
 	
