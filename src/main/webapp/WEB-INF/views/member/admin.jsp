@@ -61,8 +61,9 @@
 
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="form-group mb-30">
-                                    <select class="form-control" id="vegan">
+                                    <select class="form-control" id="tipboard" onchange="window.open(value,'_self')">
                                       <option value="">게시판관리</option>
+                                      <option value="/tipboard/allTipboardForm">전체글정보보기</option>
                                     </select>
                                 </div>
                             </div>

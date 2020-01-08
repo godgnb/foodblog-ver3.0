@@ -340,18 +340,14 @@ public class MemberController {
 		model.addAttribute("search", search);
 		
 		return "member/allMemberDelete";
-
 	} // allMemberDeleteForm get
 	
 	
 	@PostMapping("/allMemberDelete")
-	public ResponseEntity<String> allMemberDelete(@RequestParam("rowCheck") List<String> rowCheckList) {
-		log.info("rowCheckList: " + rowCheckList);
-		log.info(rowCheckList.size());
+	public ResponseEntity<String> allMemberDelete(@RequestParam(defaultValue = "", required = false) List<String> rowCheck) {
 		
-		if (!rowCheckList.isEmpty()) {
-			log.info("rowCheckList22222: " + rowCheckList);
-			memberService.deleteMembers(rowCheckList);
+		if (!(rowCheck.isEmpty() || rowCheck.size() == 0)) {
+			memberService.deleteMembers(rowCheck);
 			
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Content-Type", "text/html; charset=UTF-8");
@@ -363,10 +359,9 @@ public class MemberController {
 			sb.append("</script>");
 
 			return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
-		}
+		} 
 		  
 		return null;
-		
 	} // allMemberDelete post
 	
 	

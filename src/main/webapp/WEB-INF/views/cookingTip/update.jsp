@@ -86,7 +86,7 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
                         <!-- Blog Thumbnail -->
-                        <form action="/tipboard/update" method="post" id="frm" name="frm" class="frm" enctype="multipart/form-data">
+                        <form action="/tipboard/update" method="post" id="frm" name="frm" class="frm" enctype="multipart/form-data" onsubmit="return check();">
                         <%-- 수정할 글번호는 눈에 안보이는 hidden 타입으로 입력 --%>
                         <input type="hidden" name="pageNum" value="${pageNum}">
                         <input type="hidden" name="num" value="${num}">
@@ -105,19 +105,19 @@
 	                                				${attach.filename}
 	                               					<span class="del" style="color: red; font-weight: bold;">X</span>
                                					</div>
-                               					<input type="hidden" name="oldFiles" value="${attach.filename}"/>
+                               					<input type="hidden" name="oldFile" value="${attach.filename}"/>
                                 			</li>
                                 		</ul>
 	                                </c:if>
 	                                <button type="button" id ="btn">새로 업로드</button>
                                 </div>
-	                                <div id="newFilesContainer"></div>
+	                                <div id="newFileContainer"></div>
 	                            <div class="col-12">
 	                                <textarea class="list-form-textarea" name="content" rows="17" required>${tipBoard.content}</textarea>
 	                            </div>
 	                            <div class="listwirte">
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="submit" value="수정하기" >
-		                   			<input class="btn bueno-btn mt-30 mr-15" type="reset" value="다시쓰기" >
+		                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="다시쓰기" onclick="location.href='/tipboard/updateForm?pageNum=${pageNum}&num=${num}';">
 		                   			<input class="btn bueno-btn mt-30 mr-15" type="button" value="목록보기" onclick="location.href='/tipboard/tipboardForm?pageNum=${pageNum}';">
 		                        </div>
 	                        </div>
@@ -152,9 +152,13 @@
 	<script src="${pageContext.request.contextPath}/resources/js/active.js"></script>
 
 <script>
+var a = 1;
 $('#btn').on('click', function () {
-	let str = '<input type="file" class ="list-form" name="file" accept="image/*" required><br>';
-	$('#newFilesContainer').append(str);
+	let str = '<input type="file" class ="list-form" name="newFile" accept="image/*" required><br>';
+	if (a == 1) {
+		$('#newFileContainer').append(str);
+		a++;
+	}
 });
 
 $('span.del').on('click', function () {
@@ -164,7 +168,25 @@ $('span.del').on('click', function () {
 	$li.children('div.attach-item').remove();
 });
 </script>
+<script>
+function check() {
+	var delFile = $('input[name=delFile]').val()
+	var newFile = $('input[name=newFile]').val()
+	
+	console.log("delFile: " + delFile);
+	console.log("newFile: " + newFile);
+	
+	if (delFile != null && newFile == null) {
+		alert('수정할 이미지 파일을 선택해주세요');
+		return false;
+	}
+	if (delFile == null && newFile != null) {
+		alert('한 개의 이미지만 등록가능 합니다.');
+		return false;
+	}
+}
 
+</script>
 </body>
 
 </html>

@@ -307,7 +307,7 @@ public class TipBoardController {
 
 
 	@PostMapping("/update")
-	public ResponseEntity<String> update(MultipartFile file, TipBoardVO tipBoardVO, HttpServletRequest request, String pageNum,
+	public ResponseEntity<String> update(MultipartFile newFile, TipBoardVO tipBoardVO, HttpServletRequest request, String pageNum,
 			@RequestParam(value = "delFile", defaultValue = "", required = false) String delFile) throws Exception {
 		//=============== 게시글 수정 처리 시작 =================
 		// 게시글 수정하는 메소드 호출
@@ -320,7 +320,7 @@ public class TipBoardController {
 			String realPath = application.getRealPath("/resources/upload");
 
 			// 업로드한 원본 파일이름
-			String uploadFileName = file.getOriginalFilename();
+			String uploadFileName = newFile.getOriginalFilename();
 
 			// 파일업로드
 			UUID uuid = UUID.randomUUID();
@@ -328,7 +328,7 @@ public class TipBoardController {
 
 			File saveFile = new File(realPath, uploadFileName);
 
-			file.transferTo(saveFile); // 파일 업로드 수행
+			newFile.transferTo(saveFile); // 파일 업로드 수행
 
 			// TipBoardAttach 테이블에 insert할 tipBoardAttachVO 준비하기
 			TipBoardAttachVO tipBoardAttachVO = new TipBoardAttachVO();

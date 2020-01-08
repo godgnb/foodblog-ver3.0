@@ -24,7 +24,7 @@ public interface MemberMapper {
 	public void deleteMember(String id);
 	
 	// 다중회원정보 삭제하기 메소드
-	public void deleteMembers(List<String> rowCheckList);
+	public void deleteMembers(@Param("rowCheckList") List<String> rowCheckList);
 	
 	// 전체회원 목록 가져오기 메소드
 	public List<MemberVO> getMembers(@Param("startRow") int startRow, @Param("pageSize") int pageSize, @Param("search") String search);

@@ -29,7 +29,7 @@
 		DELETE FROM admin.member
 		<where>
 			id IN
-			<foreach item="item" collection="rowCheckList" index="index" separator="','" open="('" close="')">
+			<foreach item="item" collection="rowCheckList" index="index" separator="," open="(" close=")">
 				#{item}
 			</foreach>
 		</where>
